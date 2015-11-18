@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+	<title>Donut Simulation</title>
+</head>
+<body>
+	<h1>Donut Shop Simulation</h1>
+	<p>
+	This application simulates donuts sold per hour at each donut shop. <br>
+	For each shop for each hour, a random  integer is generated <br>
+	constrained by the maximum and minimum possible number of customers <br>
+	for each shop. The generated number of customers is mulitplied by <br>
+	the average number of donuts sold per customer at that shop. <br>
+	They are then displayed in the following table, then added together <br>
+	to calculate the total number of donuts sold.
+	</p>
+	<table>
+		<thead>
+			<tr>
+				<td></td>
+				<td>7:00AM</td>
+				<td>8:00AM</td>
+				<td>9:00AM</td>
+				<td>10:00AM</td>
+				<td>11:00AM</td>
+				<td>12:00PM</td>
+				<td>1:00PM</td>
+				<td>2:00PM</td>
+				<td>3:00PM</td>
+				<td>4:00PM</td>
+				<td>5:00PM</td>
+				<td>6:00PM</td>
+				<td>Total</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id='downtown'>
+				<td>Downtown</td>
+			</tr>
+			<tr id = 'caphill'>
+				<td>Capitol Hill</td>
+			</tr>
+			<tr id = 'slu'>
+				<td>South Lake Union</td>
+			</tr>
+			<tr id = 'wedge'>
+				<td>Wedgewood</td>
+			</tr>
+			<tr id = ballard>
+				<td>Ballard</td>
+			</tr>
+				
+		</thead>
+	</table>	
+	<script src='donuts.js'></script>
+</body>
