@@ -32,24 +32,32 @@
 				<td>Total</td>
 			</tr>
 		</thead>
-		<tbody>
-			<tr id='downtown'>
-				<td>Downtown</td>
-			</tr>
-			<tr id = 'caphill'>
-				<td>Capitol Hill</td>
-			</tr>
-			<tr id = 'slu'>
-				<td>South Lake Union</td>
-			</tr>
-			<tr id = 'wedge'>
-				<td>Wedgewood</td>
-			</tr>
-			<tr id = ballard>
-				<td>Ballard</td>
-			</tr>
-				
-		</thead>
+		<tbody id='simtable'>
+		</tbody>
 	</table>	
+	<form id='uform'>
+		<fieldset>
+			<legend>User Entry</legend>
+			
+			Location:</br>
+			<input name='loc' type='text'>
+			</br>
+			
+			Minimum Customers:</br>
+			<input name='minc' type='text'>
+			</br>
+			
+			Maximum Customers:</br>
+			<input name='maxc' type='text'>
+			</br>
+			
+			Average Donuts per Customer:</br>
+			<input name='avgd' type='text'>
+			
+			<button id='sub' type='submit'>Submit</button>
+			
+		</fieldset>
+	</form>
+				
 	<script src='donuts.js'></script>
 </body>
