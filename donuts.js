@@ -1,3 +1,10 @@
+var data = {
+  labels: ["7:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00","14:00","15:00","16:00",],
+  datasets: []
+};
+var chart; 
+	
+
 //Shop constructor
 function shop(name,min,max,avg){
 	this.name = name;
@@ -11,36 +18,46 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-/* New or edit
-function newOrEdit(newName){
-	var testArr = allShops.filter(function(existing){
-		return existing.name === newName;
-	}).map(function(num){
-		return num;
-	});
-	if(testArr.length<1){
-		return true;
-	}
-	else{
-		return testArr[0];
-	}
-	
-	for(var i=0;i<allShops.length;i++){
-		if(newName===allShops[i].name){
-			
-}
-*/
-
-//Generate table
-//shop.prototype.runSim = function(){
+//Run simulation
 function runSim(){
 //NUKE IT
+	if (chart) {
+	  chart.destroy();
+	}
 	while(simtable.childNodes[0]){
 		simtable.removeChild(simtable.childNodes[0]);
 	}
+
+	//console.log(data.datasets);
+	if(data.datasets.length>0){
+		
+		data.datasets=[];
+	}
+	console.log(data.datasets);
+	var even = false;
+	var counter = 0;
+	console.log(data.datasets);
 	allShops.forEach(function(obj){
-		var counter = 0;
+		data.datasets.push({
+		  label: obj.name,
+		  fillColor: "rgba(220,220,220,0.2)",
+		  strokeColor: "rgba(220,220,220,1)",
+		  pointColor: "rgba(220,220,220,1)",
+		  pointStrokeColor: "#fff",
+		  pointHighlightFill: "#fff",
+		  pointHighlightStroke: "rgba(220,220,220,1)",
+		  data: []
+		});
+		var total = 0;
 		var row = document.createElement('tr');
+		if(even===true){
+			row.className='even';
+			even=false;
+		}
+		else if(even===false){
+			row.className='odd';
+			even=true;
+		}
 		var loc = document.createElement('td');
 		var loctx = document.createTextNode(obj.name);
 		loc.appendChild(loctx);
@@ -48,10 +65,11 @@ function runSim(){
 		simtable.appendChild(row);
 		
 		for(var i=0;i<12;i++){
-			var output = Math.ceil(getRandomInt(obj.min,obj.max)*obj.avg);
+			var output = Math.round(getRandomInt(obj.min,obj.max)*obj.avg);
+			data.datasets[counter].data.push(output);
 			var num = document.createTextNode(output);
 			var cell = document.createElement('td');
-			counter += output;
+			total += output;
 			cell.appendChild(num);
 			row.appendChild(cell);
 		}
@@ -60,17 +78,20 @@ function runSim(){
 			sum = document.createTextNode('Quality comedy hahaha');
 		}
 		else{
-			var sum = document.createTextNode(counter);
+			var sum = document.createTextNode(total);
 		}
 		sumcell.appendChild(sum);
 		row.appendChild(sumcell);
+		counter++;
 	});
+	chart = new Chart(ctx).Line(data);
 }
 
 
 //DOM access
 var uform = document.getElementById('uform');
 var simtable = document.getElementById('simtable');
+var ctx = document.getElementById("myChart").getContext("2d");
 
 //Construct new shop objects
 var downtown = new shop('Downtown',8,43,4.5);
@@ -88,41 +109,45 @@ runSim();
 //Add user input to simuation
 var newsim = function(event){
 	event.preventDefault();
-	var uloc = event.target.loc.value;
-	var umin = event.target.minc.value;
-	var umax = event.target.maxc.value;
-	var uavg = event.target.avgd.value;
-	
-	var isNew = true;
-	for(var i=0;i<allShops.length;i++){
-		if(uloc===allShops[i].name){
-			allShops[i].min = umin;
-			allShops[i].max = umax;
-			allShops[i].avg = uavg;
-			var isNew = false;
-			console.log(allShops);
-		}
+
+	if(!event.target.loc.value){
+		runSim();
 	}
-	if(isNew === true){
-		if(uloc === 'Police Station'){
-			newloc = new shop(uloc,9999,9999,1);
+	else{
+		var uloc = event.target.loc.value;
+		var umin = event.target.minc.value;
+		var umax = event.target.maxc.value;
+		var uavg = event.target.avgd.value;
+		
+		var isNew = true;
+		for(var i=0;i<allShops.length;i++){
+			if(uloc===allShops[i].name){
+				allShops[i].min = umin;
+				allShops[i].max = umax;
+				allShops[i].avg = uavg;
+				var isNew = false;
+			}
 		}
-		else{
-		var newloc = new shop(uloc,umin,umax,uavg);
+		if(isNew === true){
+			if(uloc === 'Police Station'){
+				newloc = new shop(uloc,9999,9999,1);
+			}
+			else{
+			var newloc = new shop(uloc,umin,umax,uavg);
+			}
+			allShops.push(newloc);
 		}
-		allShops.push(newloc);
+		runSim();
 	}
-	runSim();
-	console.log(isNew);
-	console.log(allShops);
 }
 
 //event listener
 uform.addEventListener('submit',newsim);
+/*
+  var chart = new Chart(ctx).Line(data);
+  chart.update(
+  chart.destroy()
+  */
+  
 
-
-
-
-
-
-
+var chart = new Chart(ctx).Line(data);

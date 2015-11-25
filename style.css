@@ -1,0 +1,20 @@
+*{
+//	text-align:center;
+	font-family:helvetica;
+}
+body {
+	background: #A8C7CF url('img/main-bg.png') 0px 0px  repeat-x;
+	margin: 0 50px; padding: 0;	
+}
+table{
+	border-collapse:collapse;
+}
+thead{
+	padding-right:10px;
+}
+.even{
+	background-color:gray;
+}
+.odd{
+	background-color:lightGray;
+}

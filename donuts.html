@@ -1,63 +1,74 @@
 <!DOCTYPE html>
 <head>
 	<title>Donut Simulation</title>
+	<link href='style.css' type='text/css' rel='stylesheet' />
 </head>
 <body>
-	<h1>Donut Shop Simulation</h1>
-	<p>
-	This application simulates donuts sold per hour at each donut shop. <br>
-	For each shop for each hour, a random  integer is generated <br>
-	constrained by the maximum and minimum possible number of customers <br>
-	for each shop. The generated number of customers is mulitplied by <br>
-	the average number of donuts sold per customer at that shop. <br>
-	They are then displayed in the following table, then added together <br>
-	to calculate the total number of donuts sold.
-	</p>
-	<table>
-		<thead>
-			<tr>
-				<td></td>
-				<td>7:00AM</td>
-				<td>8:00AM</td>
-				<td>9:00AM</td>
-				<td>10:00AM</td>
-				<td>11:00AM</td>
-				<td>12:00PM</td>
-				<td>1:00PM</td>
-				<td>2:00PM</td>
-				<td>3:00PM</td>
-				<td>4:00PM</td>
-				<td>5:00PM</td>
-				<td>6:00PM</td>
-				<td>Total</td>
-			</tr>
-		</thead>
-		<tbody id='simtable'>
-		</tbody>
-	</table>	
-	<form id='uform'>
-		<fieldset>
-			<legend>User Entry</legend>
-			
-			Location:</br>
-			<input name='loc' type='text'>
-			</br>
-			
-			Minimum Customers:</br>
-			<input name='minc' type='text'>
-			</br>
-			
-			Maximum Customers:</br>
-			<input name='maxc' type='text'>
-			</br>
-			
-			Average Donuts per Customer:</br>
-			<input name='avgd' type='text'>
-			
-			<button id='sub' type='submit'>Submit</button>
-			
-		</fieldset>
-	</form>
+	<header>
+		<h1>Donut Shop Simulation</h1>
+	</header>
+	<article>
+		<p>
+		This application simulates donuts sold per hour at each donut shop. <br>
+		For each shop for each hour, a random  integer is generated <br>
+		constrained by the maximum and minimum possible number of customers <br>
+		for each shop. The generated number of customers is mulitplied by <br>
+		the average number of donuts sold per customer at that shop. <br>
+		They are then displayed in the following table, then added together <br>
+		to calculate the total number of donuts sold.
+		</p>
+		<table>
+			<thead>
+				<tr>
+					<td></td>
+					<td>7:00AM</td>
+					<td>8:00AM</td>
+					<td>9:00AM</td>
+					<td>10:00AM</td>
+					<td>11:00AM</td>
+					<td>12:00PM</td>
+					<td>1:00PM</td>
+					<td>2:00PM</td>
+					<td>3:00PM</td>
+					<td>4:00PM</td>
+					<td>5:00PM</td>
+					<td>6:00PM</td>
+					<td>Total</td>
+				</tr>
+			</thead>
+			<tbody id='simtable'>
+			</tbody>
+		</table>	
+		<form id='uform'>
+			<fieldset>
+				<legend>User Entry</legend>
 				
-	<script src='donuts.js'></script>
+				Location:</br>
+				<input name='loc' type='text'>
+				</br>
+				
+				Minimum Customers:</br>
+				<input name='minc' type='text'>
+				</br>
+				
+				Maximum Customers:</br>
+				<input name='maxc' type='text'>
+				</br>
+				
+				Average Donuts per Customer:</br>
+				<input name='avgd' type='text'>
+				</br>
+				
+				<button id='sub' type='submit'>Submit</button>
+				
+			</fieldset>
+		</form>
+	<canvas id='myChart' height='400' width='1000'></canvas>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js'><script>
+	</script>
+	</article>
+	
+		<script src='dgraph.js'></script>
+
+
 </body>
