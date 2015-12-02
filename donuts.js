@@ -37,6 +37,8 @@ function runSim(){
 	var even = false;
 	var counter = 0;
 	console.log(data.datasets);
+	console.log(allShops);
+	console.log(allShops[0]);
 	allShops.forEach(function(obj){
 		data.datasets.push({
 		  label: obj.name,
@@ -102,6 +104,11 @@ var ballard = new shop ('Ballard',8,58,3.75);
 
 var allShops = [downtown,caphill,slu,wedge,ballard]
 
+//var shopsAbv = JSON.stringify(allShops);
+//localStorage.setItem('shopsAbv2',shopsAbv);
+shopsAbv = localStorage.getItem('shopsAbv2');
+allShops = JSON.parse(shopsAbv);
+
 
 //Run simulations using new objects
 runSim();
@@ -136,6 +143,11 @@ var newsim = function(event){
 			var newloc = new shop(uloc,umin,umax,uavg);
 			}
 			allShops.push(newloc);
+			var shopsAbv = JSON.stringify(allShops);
+			localStorage.setItem('shopsAbv2',shopsAbv);
+			//shopsAbv = localStorage.getItem('shopsAbv2');
+			//allShops = JSON.parse(shopsAbv);
+
 		}
 		runSim();
 	}
